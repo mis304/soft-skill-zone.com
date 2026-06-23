@@ -3,12 +3,18 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   document.getElementById("workshopBtn").href = (window.CONFIG && CONFIG.WORKSHOP_URL) || "#";
 
-  // mobile nav
+  // mobile side-drawer nav
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
-  toggle.addEventListener("click", function () { links.classList.toggle("open"); });
+  var backdrop = document.getElementById("navBackdrop");
+  function openMenu() { links.classList.add("open"); backdrop.classList.add("open"); }
+  function closeMenu() { links.classList.remove("open"); backdrop.classList.remove("open"); }
+  toggle.addEventListener("click", function () {
+    if (links.classList.contains("open")) closeMenu(); else openMenu();
+  });
+  backdrop.addEventListener("click", closeMenu);
   links.addEventListener("click", function (e) {
-    if (e.target.tagName === "A") links.classList.remove("open");
+    if (e.target.tagName === "A") closeMenu();
   });
 
   UI.initReveal();
