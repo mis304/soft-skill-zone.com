@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — SOFT SKILL ZONE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="mobile-bar">
+    <button class="btn btn-ghost btn-sm" id="menuBtn">&#9776; Menu</button>
+    <span class="brand" style="font-size:16px;">SOFT SKILL <span class="gold">ZONE</span></span>
+  </div>
+  <div class="backdrop" id="backdrop"></div>
+
+  <div class="dash">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html" class="brand">SOFT SKILL <span class="gold">ZONE</span></a>
+      <div class="side-link active" data-view="dashboard">📊 Dashboard</div>
+      <div class="side-link" data-view="students">👥 Students</div>
+      <div class="side-link" data-view="courses">📚 Courses</div>
+      <div style="margin-top:24px;border-top:1px solid var(--card-border);padding-top:14px;">
+        <div class="side-link" id="sideLogout">🚪 Logout</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="dash-main">
+      <div class="dash-head">
+        <div>
+          <h1 id="viewTitle">Dashboard</h1>
+          <p class="hello" id="hello"></p>
+        </div>
+        <div class="row-gap" id="headActions"></div>
+      </div>
+
+      <!-- Dashboard view -->
+      <section id="view-dashboard">
+        <div class="stat-grid" id="statGrid">
+          <div class="loading"><span class="spinner"></span> Loading…</div>
+        </div>
+        <div class="panel">
+          <h2>Students per Course</h2>
+          <div id="chart" class="bars"><div class="empty">No data yet.</div></div>
+        </div>
+      </section>
+
+      <!-- Students view -->
+      <section id="view-students" class="hide">
+        <div class="panel">
+          <div class="row-gap" style="justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <input id="searchBox" class="" type="text" placeholder="Search name / phone / Student ID…"
+              style="flex:1;min-width:200px;padding:11px 14px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid var(--card-border);color:#fff;" />
+            <button class="btn btn-gold btn-sm" id="addStudentBtn">+ Add Student</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Student ID</th><th>Name</th><th>Phone</th><th>Course</th><th>Total</th><th>Paid</th><th>Pending</th><th>Status</th></tr></thead>
+              <tbody id="studentsBody"><tr><td colspan="8" class="loading"><span class="spinner"></span> Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Courses view -->
+      <section id="view-courses" class="hide">
+        <div class="panel">
+          <div class="row-gap" style="justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <h2 style="margin:0;">All Courses</h2>
+            <button class="btn btn-gold btn-sm" id="addCourseBtn">+ Add Course</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Duration</th><th>Fee</th><th>Status</th><th></th></tr></thead>
+              <tbody id="coursesBody"><tr><td colspan="7" class="loading"><span class="spinner"></span> Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===== Add Student modal ===== -->
+  <div class="modal-backdrop" id="addStudentModal">
+    <div class="modal">
+      <button class="modal-close" data-close>&times;</button>
+      <h2>Add Student</h2>
+      <form id="addStudentForm">
+        <div class="field"><label>Full Name</label><input id="asName" type="text" required /></div>
+        <div class="field"><label>Email</label><input id="asEmail" type="email" required /></div>
+        <div class="field"><label>Phone</label><input id="asPhone" type="tel" /></div>
+        <div class="field"><label>Course</label><select id="asCourse" required></select></div>
+        <div class="field"><label>Total Fee (₹)</label><input id="asFee" type="number" min="0" /></div>
+        <div class="field"><label>Join Date</label><input id="asDate" type="date" /></div>
+        <p class="muted" style="font-size:13px;margin-bottom:14px;">A Student ID + temporary password will be generated and emailed to the student automatically.</p>
+        <button type="submit" class="btn btn-gold btn-block" id="asSubmit">Create Student &amp; Send Email</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Student Detail modal ===== -->
+  <div class="modal-backdrop" id="detailModal">
+    <div class="modal" style="max-width:560px;">
+      <button class="modal-close" data-close>&times;</button>
+      <div id="detailBody"><div class="loading"><span class="spinner"></span> Loading…</div></div>
+    </div>
+  </div>
+
+  <!-- ===== Record Payment modal ===== -->
+  <div class="modal-backdrop" id="payModal">
+    <div class="modal">
+      <button class="modal-close" data-close>&times;</button>
+      <h2>Record Payment</h2>
+      <p class="muted" id="payFor" style="margin-bottom:14px;font-size:14px;"></p>
+      <form id="payForm">
+        <div class="field"><label>Amount (₹)</label><input id="payAmount" type="number" min="1" required /></div>
+        <div class="field"><label>Mode</label>
+          <select id="payMode" required>
+            <option value="Cash">Cash</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Card</option>
+            <option value="Bank">Bank</option>
+          </select>
+        </div>
+        <div class="field"><label>Date</label><input id="payDate" type="date" /></div>
+        <button type="submit" class="btn btn-gold btn-block" id="paySubmit">Record &amp; Email Receipt</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Course form modal ===== -->
+  <div class="modal-backdrop" id="courseModal">
+    <div class="modal">
+      <button class="modal-close" data-close>&times;</button>
+      <h2 id="courseModalTitle">Add Course</h2>
+      <form id="courseForm">
+        <input type="hidden" id="cId" />
+        <div class="field"><label>Name</label><input id="cName" type="text" required /></div>
+        <div class="field"><label>Category</label><input id="cCategory" type="text" /></div>
+        <div class="field"><label>Outcome</label><input id="cOutcome" type="text" /></div>
+        <div class="field"><label>Duration</label><input id="cDuration" type="text" placeholder="e.g. 4 Months" /></div>
+        <div class="field"><label>Fee (₹)</label><input id="cFee" type="number" min="0" /></div>
+        <div class="field"><label><input id="cActive" type="checkbox" checked style="width:auto;margin-right:8px;" />Active</label></div>
+        <button type="submit" class="btn btn-gold btn-block" id="cSubmit">Save Course</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

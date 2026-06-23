@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOFT SKILL ZONE — Learn AI.. Lead Future.</title>
+  <meta name="description" content="SOFT SKILL ZONE — Computer & AI training institute in Ara, Bihar. 0 se AI Expert bano. No coding, no technical background required." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 900: '#0A1F44', 800: '#0D2B57', 700: '#123163' },
+            gold: '#E8B04B', goldDim: '#c8943a', cyan: '#34C8E8'
+          },
+          fontFamily: { heading: ['Poppins', 'sans-serif'], body: ['Inter', 'sans-serif'] }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { --gold:#E8B04B; --cyan:#34C8E8; --navy900:#0A1F44; --navy800:#0D2B57; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif; color: #e8eefc; margin: 0;
+      background:
+        radial-gradient(900px 500px at 78% -5%, rgba(52,200,232,.12), transparent 55%),
+        radial-gradient(700px 500px at 10% 10%, rgba(232,176,75,.10), transparent 55%),
+        linear-gradient(160deg, #060c1a, #03050d);
+      background-attachment: fixed; min-height: 100vh; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, .font-heading { font-family: 'Poppins', sans-serif; }
+    .grad-text { background: linear-gradient(95deg, #FCE9B8, #E8B04B 45%, #E0852B); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .gold { color: var(--gold); } .cyan { color: var(--cyan); }
+
+    /* tech grid backdrop */
+    .tech-grid {
+      background-image: linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 0%, #000 60%, transparent 100%);
+      mask-image: radial-gradient(ellipse 60% 55% at 50% 0%, #000 60%, transparent 100%);
+    }
+
+    /* glass cards */
+    .glass { background: rgba(12,20,42,.6); backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.10); box-shadow: 0 8px 32px rgba(0,0,0,.35); }
+    .glass:hover { border-color: rgba(52,200,232,.45); box-shadow: 0 12px 44px rgba(52,200,232,.18); }
+
+    /* buttons */
+    .btn { display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-family:'Poppins',sans-serif;
+      font-weight:600; font-size:15px; padding:13px 24px; border-radius:999px; border:1px solid transparent; transition:.2s; }
+    .btn-gold { background:linear-gradient(135deg,var(--gold),var(--goldDim,#c8943a)); color:#0A1F44; box-shadow:0 8px 26px rgba(232,176,75,.4); }
+    .btn-gold:hover { transform:translateY(-2px); box-shadow:0 12px 34px rgba(232,176,75,.6); }
+    .btn-ghost { background:rgba(255,255,255,.05); color:#fff; border-color:rgba(255,255,255,.14); }
+    .btn-ghost:hover { border-color:var(--cyan); box-shadow:0 0 0 3px rgba(52,200,232,.14); }
+    .btn-sm { padding:9px 18px; font-size:14px; }
+
+    /* animations */
+    @keyframes floaty { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-12px);} }
+    .float { animation: floaty 6s ease-in-out infinite; }
+    .float-d { animation: floaty 6s ease-in-out infinite; animation-delay:-3s; }
+    @keyframes radiate { 0%{ stroke-dashoffset:0; opacity:.3;} 50%{ opacity:1;} 100%{ stroke-dashoffset:-20; opacity:.3;} }
+    .radiate { stroke-dasharray:4 4; animation: radiate 3.5s linear infinite; }
+    @keyframes scan { 0%{ top:-10%; opacity:0;} 15%{opacity:1;} 85%{opacity:1;} 100%{ top:110%; opacity:0;} }
+    .scan-line { position:absolute; left:0; width:100%; height:2px; background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+      box-shadow:0 0 12px var(--cyan); animation: scan 3.2s cubic-bezier(.4,0,.2,1) infinite; z-index:20; }
+    @keyframes spinSlow { to { transform: rotate(360deg);} }
+    .spin-slow { animation: spinSlow 8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg);} }
+    .spinner { width:20px;height:20px;border:3px solid rgba(255,255,255,.25);border-top-color:var(--gold);border-radius:50%;
+      animation:spin .7s linear infinite;display:inline-block;vertical-align:middle; }
+
+    /* slide-up reveal */
+    .reveal { opacity:0; transform:translateY(34px); transition:opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity:1; transform:none; }
+
+    /* brain core */
+    .brain-core { background: radial-gradient(circle at center, rgba(52,200,232,.18), rgba(8,22,52,.95));
+      box-shadow: 0 0 0 1px rgba(52,200,232,.3), 0 0 70px -16px rgba(52,200,232,.5), inset 0 0 34px rgba(232,176,75,.12); }
+
+    /* navbar */
+    .navbar { position:sticky; top:0; z-index:50; background:rgba(7,12,26,.82); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,.07); }
+    .nav-links a { color:#9fb0d0; font-size:14.5px; transition:.2s; }
+    .nav-links a:hover { color:#fff; }
+    .nav-toggle { display:none; background:none; border:0; color:#fff; font-size:26px; cursor:pointer; }
+    @media (max-width:860px){
+      .nav-toggle{ display:block; }
+      .nav-links{ position:absolute; top:64px; left:0; right:0; flex-direction:column; gap:2px; align-items:flex-start;
+        background:var(--navy800); padding:14px 22px 22px; border-bottom:1px solid rgba(255,255,255,.08); display:none; }
+      .nav-links.open{ display:flex; }
+      .nav-links a{ padding:11px 0; width:100%; border-bottom:1px solid rgba(255,255,255,.05); }
+    }
+
+    /* dynamic course cards (rendered by landing.js) */
+    .course-card { display:flex; flex-direction:column; padding:24px; border-radius:18px;
+      background:rgba(12,20,42,.55); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 8px 30px rgba(0,0,0,.32); transition:transform .25s, border-color .25s, box-shadow .25s; }
+    .course-card:hover { transform:translateY(-6px); border-color:rgba(52,200,232,.45); box-shadow:0 16px 44px rgba(52,200,232,.16); }
+    .course-badge { align-self:flex-start; font-size:11.5px; font-weight:600; color:var(--cyan);
+      background:rgba(52,200,232,.12); border:1px solid rgba(52,200,232,.3); padding:4px 12px; border-radius:999px; letter-spacing:.3px; }
+    .course-card h3 { font-size:19px; margin:14px 0 8px; color:#fff; font-weight:700; }
+    .course-outcome { color:#9fb0d0; font-size:14px; flex:1; line-height:1.55; margin:0; }
+    .course-meta { display:flex; justify-content:space-between; align-items:center; margin:18px 0 16px; }
+    .course-dur { color:#9fb0d0; font-size:13.5px; }
+    .course-fee { font-family:'Poppins'; font-weight:700; font-size:21px; color:var(--gold); }
+    .course-btn { display:flex; justify-content:center; align-items:center; gap:6px; padding:11px; border-radius:12px;
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); color:#fff; font-family:'Poppins'; font-weight:600; font-size:14px; transition:.2s; }
+    .course-btn:hover { border-color:var(--cyan); background:rgba(52,200,232,.12); }
+
+    /* form fields */
+    .fld { width:100%; padding:12px 15px; border-radius:12px; background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12); color:#fff; font-size:15px; font-family:inherit; transition:.15s; }
+    .fld:focus { outline:0; border-color:var(--cyan); box-shadow:0 0 0 3px rgba(52,200,232,.15); }
+    .fld::placeholder { color:#5f7196; }
+    select.fld option { color:#000; }
+
+    /* toast */
+    .toast { position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(140%);
+      background:var(--navy800); border:1px solid rgba(255,255,255,.14); color:#fff; padding:14px 22px;
+      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.4); z-index:100; transition:transform .35s; font-size:14px; max-width:90vw; }
+    .toast.show { transform:translateX(-50%) translateY(0); }
+    .toast.ok { border-color:rgba(52,211,153,.5); } .toast.err { border-color:rgba(248,113,113,.5); }
+
+    .loading, .empty { text-align:center; color:#9fb0d0; padding:40px; grid-column:1/-1; }
+
+    /* animated background layers */
+    #bg-canvas { z-index:-8; }
+    .bg-orb { position:fixed; border-radius:50%; filter:blur(90px); z-index:-9; pointer-events:none; opacity:.55; }
+    .orb-a { width:46vw; height:46vw; max-width:620px; max-height:620px; top:-8%; right:-6%;
+      background:radial-gradient(circle, rgba(52,200,232,.55), transparent 70%); animation: drA 26s ease-in-out infinite; }
+    .orb-b { width:42vw; height:42vw; max-width:560px; max-height:560px; bottom:-10%; left:-8%;
+      background:radial-gradient(circle, rgba(232,176,75,.42), transparent 70%); animation: drB 32s ease-in-out infinite; }
+    @keyframes drA { 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(-6%,8%) scale(1.12);} }
+    @keyframes drB { 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(8%,-6%) scale(1.1);} }
+    .bg-vignette { position:fixed; inset:0; z-index:-7; pointer-events:none;
+      background:radial-gradient(ellipse 90% 70% at 50% 35%, transparent 55%, rgba(5,14,34,.55) 100%); }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Animated background ===== -->
+  <canvas id="bg-canvas" class="fixed inset-0 -z-10 pointer-events-none"></canvas>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <div class="bg-vignette"></div>
+
+  <!-- ===== Navbar ===== -->
+  <header class="navbar">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="index.html" class="flex flex-col leading-none">
+        <span class="font-heading font-bold text-lg tracking-wide">SOFT SKILL <span class="gold">ZONE</span></span>
+        <span class="text-[11px] text-slate-400">Learn AI.. Lead Future.</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+      <nav class="nav-links flex items-center gap-7" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#courses">Courses</a>
+        <a href="#teacher">Teacher</a>
+        <a href="#workshop">Workshop</a>
+        <a href="#contact">Contact</a>
+        <a href="login.html" class="btn btn-gold btn-sm">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden" id="home">
+    <div class="absolute inset-0 tech-grid opacity-60 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
+
+      <!-- Text -->
+      <div class="order-2 lg:order-1 space-y-7 reveal in">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold border border-gold/30 rounded-full px-4 py-1.5">
+          Computer &amp; AI Training Institute
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full rounded-full bg-cyan animate-ping opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan"></span>
+          </span>
+        </div>
+        <h1 class="font-heading font-bold text-4xl md:text-6xl leading-[1.1] text-white">
+          Sahi Prompt = <span class="grad-text">Powerful Result</span>
+        </h1>
+        <p class="text-lg text-slate-300 max-w-lg font-light leading-relaxed">
+          0 se AI Expert bano. No coding, no technical background required — basic se advanced AI skills, real practice aur live examples ke saath.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#courses" class="btn btn-gold">Explore Courses</a>
+          <a href="#contact" class="btn btn-ghost">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- AI brain visual -->
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-end reveal in">
+        <div class="relative w-full max-w-[440px] h-[440px] flex items-center justify-center">
+          <!-- radiating lines -->
+          <svg class="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 440 440">
+            <defs>
+              <linearGradient id="pipe" gradientUnits="userSpaceOnUse" x1="220" y1="220" x2="80" y2="80">
+                <stop offset="0" stop-color="#34C8E8" stop-opacity=".7" />
+                <stop offset="1" stop-color="#34C8E8" stop-opacity=".05" />
+              </linearGradient>
+            </defs>
+            <path d="M220,220 L70,90" stroke="url(#pipe)" stroke-width="1.2" class="radiate" style="animation-duration:4s" />
+            <path d="M220,220 L380,80" stroke="url(#pipe)" stroke-width="1.2" class="radiate" style="animation-delay:-1s;animation-duration:5s" />
+            <path d="M220,220 L390,300" stroke="url(#pipe)" stroke-width="1.2" class="radiate" style="animation-delay:-.5s;animation-duration:3.4s" />
+            <path d="M220,220 L80,370" stroke="url(#pipe)" stroke-width="1.2" class="radiate" style="animation-delay:-2s;animation-duration:4.6s" />
+          </svg>
+
+          <!-- core -->
+          <div class="relative z-30 w-48 h-48 brain-core rounded-3xl flex items-center justify-center border border-cyan/25 transition-transform duration-700 hover:scale-105">
+            <span class="absolute -top-px -left-px w-4 h-4 border-t-2 border-l-2 rounded-tl-xl" style="border-color:var(--cyan)"></span>
+            <span class="absolute -top-px -right-px w-4 h-4 border-t-2 border-r-2 rounded-tr-xl" style="border-color:var(--cyan)"></span>
+            <span class="absolute -bottom-px -left-px w-4 h-4 border-b-2 border-l-2 rounded-bl-xl" style="border-color:var(--cyan)"></span>
+            <span class="absolute -bottom-px -right-px w-4 h-4 border-b-2 border-r-2 rounded-br-xl" style="border-color:var(--cyan)"></span>
+            <div class="absolute inset-0 overflow-hidden rounded-3xl opacity-50 pointer-events-none"><div class="scan-line"></div></div>
+            <div class="text-7xl" style="filter:drop-shadow(0 0 26px rgba(52,200,232,.55))">🧠</div>
+            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2">
+              <div class="bg-navy-900 border border-cyan/30 px-3 py-1 rounded-full flex items-center gap-2" style="box-shadow:0 0 15px rgba(52,200,232,.3)">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
+                <span class="text-[10px] font-heading font-bold text-cyan tracking-[.12em] uppercase">AI Core</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- floating nodes -->
+          <div class="absolute top-[6%] left-0 sm:-left-2 float-d z-20">
+            <div class="glass rounded-xl p-3 flex items-center gap-3 w-40 border-l-2" style="border-left-color:var(--cyan)">
+              <div class="w-8 h-8 rounded-lg grid place-items-center shrink-0" style="background:rgba(52,200,232,.12);border:1px solid rgba(52,200,232,.25)">✍️</div>
+              <div class="min-w-0"><div class="text-[9px] uppercase font-bold tracking-wider text-cyan">Skill</div><div class="text-[12px] font-medium text-slate-200 truncate">Prompt Writing</div></div>
+            </div>
+          </div>
+          <div class="absolute top-0 right-0 sm:-right-2 float z-20">
+            <div class="glass rounded-xl p-3 flex items-center gap-3 w-44 border-l-2" style="border-left-color:var(--gold)">
+              <div class="w-8 h-8 rounded-lg grid place-items-center shrink-0 spin-slow" style="background:rgba(232,176,75,.12);border:1px solid rgba(232,176,75,.25)">⚙️</div>
+              <div class="min-w-0"><div class="text-[9px] uppercase font-bold tracking-wider text-gold">Tools</div><div class="text-[12px] font-medium text-slate-200 truncate">AI Automation</div></div>
+            </div>
+          </div>
+          <div class="absolute bottom-[14%] right-0 sm:-right-3 float-d z-20">
+            <div class="glass rounded-xl p-3 flex items-center gap-3 w-40 border-l-2" style="border-left-color:var(--cyan)">
+              <div class="w-8 h-8 rounded-lg grid place-items-center shrink-0" style="background:rgba(52,200,232,.12);border:1px solid rgba(52,200,232,.25)">💼</div>
+              <div class="min-w-0"><div class="text-[9px] uppercase font-bold tracking-wider text-cyan">Use</div><div class="text-[12px] font-medium text-slate-200 truncate">Office Work</div></div>
+            </div>
+          </div>
+          <div class="absolute bottom-[3%] left-0 sm:-left-2 float z-20">
+            <div class="glass rounded-xl p-3 flex items-center gap-3 w-44 border-l-2" style="border-left-color:var(--gold)">
+              <div class="w-8 h-8 rounded-lg grid place-items-center shrink-0" style="background:rgba(232,176,75,.12);border:1px solid rgba(232,176,75,.25)">🚀</div>
+              <div class="min-w-0"><div class="text-[9px] uppercase font-bold tracking-wider text-gold">Earn</div><div class="text-[12px] font-medium text-slate-200 truncate">Freelancing</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== USP strip ===== -->
+  <section class="border-y border-white/5 bg-white/[.02]">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+        <div class="reveal flex gap-3 items-start"><span class="text-cyan text-xl leading-tight">◆</span><span><span class="font-semibold text-white">Basic → Advanced</span><br><span class="text-slate-400 text-sm">AI Skills</span></span></div>
+        <div class="reveal flex gap-3 items-start"><span class="text-cyan text-xl leading-tight">◆</span><span><span class="font-semibold text-white">Prompt likhna</span><br><span class="text-slate-400 text-sm">+ AI control</span></span></div>
+        <div class="reveal flex gap-3 items-start"><span class="text-cyan text-xl leading-tight">◆</span><span><span class="font-semibold text-white">Office + Freelancing</span><br><span class="text-slate-400 text-sm">use</span></span></div>
+        <div class="reveal flex gap-3 items-start"><span class="text-cyan text-xl leading-tight">◆</span><span><span class="font-semibold text-white">Real Practice</span><br><span class="text-slate-400 text-sm">+ Live Examples</span></span></div>
+        <div class="reveal flex gap-3 items-start"><span class="text-cyan text-xl leading-tight">◆</span><span><span class="font-semibold text-white">No Coding</span><br><span class="text-slate-400 text-sm">No Tech Background</span></span></div>
+      </div>
+      <p class="reveal text-center mt-8 font-heading text-gold text-lg">0 se AI Expert bano 🚀</p>
+    </div>
+  </section>
+
+  <!-- ===== Courses ===== -->
+  <section class="py-24" id="courses">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="reveal font-heading font-bold text-3xl md:text-5xl text-center text-white">Our <span class="grad-text">Courses</span></h2>
+      <p class="reveal text-center text-slate-400 mt-3 mb-14 max-w-xl mx-auto">Industry-ready AI &amp; computer skills — apna path chuno.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="coursesGrid">
+        <div class="loading"><span class="spinner"></span> Loading courses…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Featured workshop ===== -->
+  <section class="pb-24" id="workshop">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal glass rounded-3xl p-9 grid lg:grid-cols-[1.4fr_1fr] gap-8 items-center" style="background:linear-gradient(135deg,rgba(232,176,75,.12),rgba(52,200,232,.08));border-color:rgba(232,176,75,.35)">
+        <div>
+          <span class="text-gold font-bold uppercase tracking-wider text-xs">★ Featured Workshop</span>
+          <h3 class="font-heading font-bold text-3xl mt-2 mb-2 text-white">Google Cloud &amp; AI Workshop</h3>
+          <p class="text-slate-300">By <b class="text-white">Chandan Kumar</b> — hands-on Cloud + AI. Regular course ki tarah enroll karke fee pay kar sakte ho, ya dedicated workshop site dekho.</p>
+          <div class="font-heading text-3xl text-gold my-4">₹6,499</div>
+          <a href="#" id="workshopBtn" class="btn btn-gold" target="_blank" rel="noopener">View Details →</a>
+        </div>
+        <div class="text-center"><div class="text-8xl float" style="filter:drop-shadow(0 0 24px rgba(232,176,75,.45))">☁️</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Teacher ===== -->
+  <section class="pb-24" id="teacher">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="reveal font-heading font-bold text-3xl md:text-5xl text-center text-white">Meet Your <span class="grad-text">Mentor</span></h2>
+      <div class="reveal glass rounded-3xl p-8 mt-12 grid md:grid-cols-[240px_1fr] gap-8 items-center">
+        <img src="public/pankaj.jpg" alt="Pankaj Pandey — Founder & Lead Trainer"
+          class="w-60 h-72 object-cover rounded-2xl border-2 mx-auto" style="border-color:rgba(232,176,75,.4)"
+          onerror="this.style.display='none'" />
+        <div class="text-center md:text-left">
+          <h3 class="font-heading font-bold text-2xl text-white">Pankaj Pandey</h3>
+          <div class="text-gold font-semibold mt-1 mb-4">Founder &amp; Lead Trainer</div>
+          <p class="text-slate-400 leading-relaxed">Pankaj Pandey SOFT SKILL ZONE ke founder aur lead trainer hain. Unka mission hai students ko 0 se AI expert banana — practical, industry-focused training ke saath, taaki har student office work aur freelancing dono me confident ho. Basic computer se lekar advanced AI tools tak, sab kuch real examples aur live practice ke through sikhaya jaata hai.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="pb-24" id="contact">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="reveal font-heading font-bold text-3xl md:text-5xl text-center text-white">Get in <span class="grad-text">Touch</span></h2>
+      <p class="reveal text-center text-slate-400 mt-3 mb-12">Visit karo ya enquiry bhejo — hum call back karenge.</p>
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="reveal space-y-5">
+          <div class="flex gap-4 items-start">
+            <div class="w-11 h-11 grid place-items-center rounded-xl text-gold shrink-0" style="background:rgba(232,176,75,.12);border:1px solid rgba(232,176,75,.3)">📞</div>
+            <div><div class="text-sm text-slate-400">Call us</div><a class="font-semibold text-white" href="tel:6202856897">6202856897</a></div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-11 h-11 grid place-items-center rounded-xl text-gold shrink-0" style="background:rgba(232,176,75,.12);border:1px solid rgba(232,176,75,.3)">📍</div>
+            <div><div class="text-sm text-slate-400">Address</div><div class="font-semibold text-white">Near Gym Town, Mission Road Pakri, Ara, Bihar</div></div>
+          </div>
+          <iframe class="w-full h-56 rounded-2xl border-0 mt-2" style="filter:grayscale(.2) contrast(1.05)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Mission+Road+Pakri+Ara+Bihar&output=embed" title="Map"></iframe>
+        </div>
+
+        <div class="reveal glass rounded-2xl p-7">
+          <h3 class="font-heading font-bold text-xl mb-5 text-white">Send an Enquiry</h3>
+          <form id="enquiryForm" class="space-y-4">
+            <div><label class="block text-sm text-slate-400 mb-1.5">Your Name</label><input id="enqName" type="text" required placeholder="Full name" class="fld" /></div>
+            <div><label class="block text-sm text-slate-400 mb-1.5">Phone Number</label><input id="enqPhone" type="tel" required placeholder="10-digit mobile" class="fld" /></div>
+            <div><label class="block text-sm text-slate-400 mb-1.5">Course of Interest</label><select id="enqCourse" class="fld"><option value="">Select a course (optional)</option></select></div>
+            <button type="submit" class="btn btn-gold w-full justify-center" id="enqSubmit">Submit Enquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="border-t border-white/5 bg-black/20 pt-14 pb-7">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <span class="font-heading font-bold text-xl">SOFT SKILL <span class="gold">ZONE</span></span>
+          <p class="text-slate-400 text-sm mt-3 leading-relaxed">Learn AI.. Lead Future. — Computer &amp; AI training institute in Ara, Bihar. 0 se AI Expert bano.</p>
+        </div>
+        <div>
+          <h4 class="text-gold text-sm font-bold mb-3">Quick Links</h4>
+          <div class="space-y-2 text-sm text-slate-400">
+            <a href="#courses" class="block hover:text-white">Courses</a>
+            <a href="#workshop" class="block hover:text-white">Workshop</a>
+            <a href="#teacher" class="block hover:text-white">Teacher</a>
+            <a href="login.html" class="block hover:text-white">Login</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-gold text-sm font-bold mb-3">Contact</h4>
+          <div class="space-y-2 text-sm text-slate-400">
+            <a href="tel:6202856897" class="block hover:text-white">📞 6202856897</a>
+            <p class="leading-relaxed">📍 Near Gym Town, Mission Road Pakri, Ara, Bihar</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-slate-500 text-sm mt-10 pt-6 border-t border-white/5">© <span id="year"></span> SOFT SKILL ZONE. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="js/bg.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard — SOFT SKILL ZONE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="mobile-bar">
+    <span class="brand" style="font-size:16px;">SOFT SKILL <span class="gold">ZONE</span></span>
+    <button class="btn btn-ghost btn-sm" id="logoutMobile">Logout</button>
+  </div>
+
+  <div class="dash" style="max-width:980px;margin:0 auto;">
+    <main class="dash-main" style="width:100%;">
+      <div class="dash-head">
+        <div>
+          <h1>My Dashboard</h1>
+          <p class="hello" id="hello">Loading…</p>
+        </div>
+        <div class="row-gap">
+          <button class="btn btn-ghost btn-sm" id="changePwBtn">Change Password</button>
+          <button class="btn btn-gold btn-sm" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+
+      <div id="content">
+        <div class="loading"><span class="spinner"></span> Loading your details…</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Change password modal -->
+  <div class="modal-backdrop" id="pwModal">
+    <div class="modal">
+      <button class="modal-close" data-close>&times;</button>
+      <h2>Change Password</h2>
+      <form id="pwForm">
+        <div class="field">
+          <label for="oldPw">Current Password</label>
+          <input id="oldPw" type="password" required />
+        </div>
+        <div class="field">
+          <label for="newPw">New Password (min 6 chars)</label>
+          <input id="newPw" type="password" required minlength="6" />
+        </div>
+        <button type="submit" class="btn btn-gold btn-block" id="pwSubmit">Update Password</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/student.js"></script>
+</body>
+</html>

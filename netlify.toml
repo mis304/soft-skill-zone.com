@@ -1,0 +1,12 @@
+# SOFT SKILL ZONE — static site, no build step.
+# Netlify serves the repo root as-is.
+[build]
+  publish = "."
+  command = ""
+
+# Friendly 404 → send unknown routes back to the landing page.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
