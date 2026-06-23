@@ -7,7 +7,7 @@
 (function () {
   function apiUrl() {
     var url = window.CONFIG && window.CONFIG.API_URL;
-    if (!url || url.indexOf("REPLACE_WITH") === 0) {
+    if (!url || url.indexOf("https://script.google.com/macros/s/AKfycbyx7R4sEaORC4jvF1mKTWx1zy13_Dt0HM1Ex8mt42jQ_MvUo1M0ViLQw7JjTENcWVY/exec") === 0) {
       throw new Error("API_URL not configured. Set it in js/config.js (see README).");
     }
     return url;
